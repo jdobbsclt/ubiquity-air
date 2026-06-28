@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SKY HUB Dashboard</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', sans-serif; background: #0f1923; color: #e0e8f0; min-height: 100vh; }
+
+  header {
+    background: linear-gradient(135deg, #1a2f4a, #0d1f33);
+    border-bottom: 2px solid #2a5a8c;
+    padding: 18px 28px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  header h1 { font-size: 1.5rem; color: #5bc0f5; letter-spacing: 2px; }
+  .badge { background: #1e4060; border: 1px solid #2a6090; border-radius: 20px; padding: 3px 10px; font-size: 0.72rem; color: #5bc0f5; margin-left: 8px; }
+  .badge-green { background: #0a2a14; border-color: #1a5a2a; color: #2ecc71; }
+  .badge-yellow { background: #2d2500; border-color: #5a4a00; color: #f1c40f; }
+
+  .pad { padding: 0 22px; }
+  .section-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 2px; color: #3a6a8a; padding: 14px 22px 5px; font-weight: 700; }
+
+  .grid4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; padding: 14px 22px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; padding: 0 22px 14px; }
+  .grid2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; padding: 0 22px 14px; }
+  .grid1 { padding: 0 22px 14px; }
+
+  .card { background: #152030; border: 1px solid #1e3a52; border-radius: 10px; padding: 14px 16px; }
+  .card.alert  { border-color: #c0392b; background: #1a1010; }
+  .card.warn   { border-color: #c0850a; background: #1a1608; }
+  .card.good   { border-color: #1a6b3a; background: #0c1a10; }
+  .card.info   { border-color: #1e4a70; }
+  .card.gold   { border-color: #b8860b; background: #1a1608; }
+
+  .card-title { font-size: 0.67rem; text-transform: uppercase; letter-spacing: 1.5px; color: #5a8aaa; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink:0; }
+  .dr{background:#e74c3c;} .dy{background:#f1c40f;} .dg{background:#2ecc71;} .db{background:#3498db;} .do{background:#e67e22;}
+
+  .big  { font-size: 1.9rem; font-weight: 700; line-height: 1; }
+  .med  { font-size: 1.2rem; font-weight: 700; }
+  .sub  { font-size: 0.75rem; color: #7a9bb5; margin-top: 5px; }
+  .sub2 { font-size: 0.72rem; color: #5a8aaa; margin-top: 3px; }
+
+  .red    { color: #e74c3c; }
+  .yellow { color: #f1c40f; }
+  .green  { color: #2ecc71; }
+  .blue   { color: #5bc0f5; }
+  .orange { color: #e67e22; }
+  .gold   { color: #f0c040; }
+  .white  { color: #fff; }
+  .muted  { color: #4a6a7a; }
+
+  .bar-track { height: 8px; background: #0d1f2d; border-radius: 4px; overflow: hidden; margin: 7px 0 4px; }
+  .bar-fill  { height: 100%; border-radius: 4px; transition: width 0.3s; }
+
+  /* Progress tracker */
+  .progress-section { padding: 0 22px 14px; }
+  .progress-card { background: #0e1e2e; border: 1px solid #1e3a52; border-radius: 12px; padding: 20px; }
+  .build-steps { display: flex; align-items: flex-start; gap: 0; margin-top: 16px; position: relative; }
+  .build-steps::before { content:''; position:absolute; top:22px; left:22px; right:22px; height:2px; background:#1e3a52; z-index:0; }
+  .step { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; z-index:1; }
+  .step-circle { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; border: 2px solid; }
+  .step-active   { background: #1a3a1a; border-color: #2ecc71; color: #2ecc71; }
+  .step-next     { background: #2a2000; border-color: #f0c040; color: #f0c040; }
+  .step-future   { background: #0d1f2d; border-color: #1e3a52; color: #3a6a8a; }
+  .step-label    { font-size: 0.7rem; text-align: center; color: #7a9bb5; max-width: 90px; line-height: 1.4; }
+  .step-price    { font-size: 0.75rem; font-weight: 700; text-align: center; }
+
+  .savings-bar-wrap { margin-top: 16px; }
+  .savings-label { display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 6px; }
+  .savings-track { height: 16px; background: #0d1f2d; border-radius: 8px; overflow: hidden; border: 1px solid #1e3a52; }
+  .savings-fill  { height: 100%; border-radius: 8px; background: linear-gradient(90deg, #1a6b3a, #2ecc71); display: flex; align-items: center; padding-left: 8px; }
+  .savings-pct   { font-size: 0.67rem; font-weight: 700; color: #fff; white-space: nowrap; }
+
+  /* Fleet table */
+  table { width: 100%; border-collapse: collapse; font-size: 0.77rem; }
+  th { color: #5bc0f5; text-align: left; padding: 6px 8px; border-bottom: 1px solid #1e3a52; font-size: 0.67rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+  td { padding: 6px 8px; border-bottom: 1px solid #0d1f2d; color: #b0c8d8; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #1a2f40; }
+
+  .tag { display: inline-block; border-radius: 4px; padding: 1px 7px; font-size: 0.65rem; font-weight: 700; white-space: nowrap; }
+  .tag-red    { background:#2a0808; color:#e74c3c; border:1px solid #5a1010; }
+  .tag-yellow { background:#2a2000; color:#f1c40f; border:1px solid #5a4000; }
+  .tag-green  { background:#082a12; color:#2ecc71; border:1px solid #105a22; }
+  .tag-blue   { background:#081828; color:#5bc0f5; border:1px solid #104060; }
+  .tag-gold   { background:#2a1e00; color:#f0c040; border:1px solid #5a3e00; }
+
+  /* Priority list */
+  .plist { list-style: none; }
+  .plist li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid #0d1f2d; font-size: 0.79rem; line-height: 1.5; }
+  .plist li:last-child { border-bottom: none; }
+  .pnum { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.68rem; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .p1,.p2 { background:#4a0808; color:#e74c3c; }
+  .p3,.p4 { background:#3a2e00; color:#f1c40f; }
+  .p5,.p6 { background:#083a20; color:#2ecc71; }
+
+  /* Fuel gauge */
+  .fuel-gauge { position: relative; margin: 8px 0; }
+  .fuel-track { height: 12px; background: #0d1f2d; border-radius: 6px; overflow: hidden; }
+  .fuel-fill-bad  { height: 100%; border-radius: 6px; background: linear-gradient(90deg,#7a1010,#e74c3c); }
+  .fuel-fill-ok   { height: 100%; border-radius: 6px; background: linear-gradient(90deg,#7a5a00,#f1c40f); }
+  .fuel-fill-good { height: 100%; border-radius: 6px; background: linear-gradient(90deg,#0a4a20,#2ecc71); }
+  .fuel-markers { display: flex; justify-content: space-between; font-size: 0.6rem; color: #3a6a8a; margin-top: 3px; }
+
+  /* Plane cards */
+  .plane-card { background: #0e1e2e; border: 1px solid #1e3a52; border-radius: 8px; padding: 14px; }
+  .plane-card.target { border-color: #f0c040; }
+  .plane-name { font-size: 1rem; font-weight: 700; color: #fff; }
+  .plane-meta { font-size: 0.72rem; color: #5a8aaa; margin-top: 2px; }
+  .plane-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 10px; }
+  .plane-stat { background: #0a1520; border-radius: 5px; padding: 6px 8px; }
+  .plane-stat-val { font-size: 0.9rem; font-weight: 700; }
+  .plane-stat-lbl { font-size: 0.62rem; color: #4a7a9a; margin-top: 1px; }
+
+  .divider { height: 1px; background: #1e3a52; margin: 0 22px 14px; }
+
+  footer { text-align: center; padding: 14px; font-size: 0.65rem; color: #2a4a62; border-top: 1px solid #1e3a52; margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div>
+    <h1>✈ SKY HUB <span style="font-size:0.85rem;color:#5a8aaa;font-weight:400;">AIRLINE COMMAND CENTER</span></h1>
+    <div style="font-size:0.75rem;color:#5a8aaa;margin-top:4px;">
+      Base: CLT &nbsp;·&nbsp; Hubs: DFW · LAX · LHR
+      <span class="badge">43 planes</span>
+      <span class="badge">43 routes</span>
+      <span class="badge badge-green">8 open hangars</span>
+    </div>
+  </div>
+  <div style="text-align:right;">
+    <div style="font-size:0.7rem;color:#5a8aaa;">Last updated</div>
+    <div style="font-size:0.85rem;color:#5bc0f5;font-weight:600;">June 28, 2026</div>
+    <div style="font-size:0.7rem;color:#5a8aaa;margin-top:2px;">Update every few days</div>
+  </div>
+</header>
+
+<!-- KPI ROW -->
+<div class="grid4" style="padding-top:16px;">
+  <div class="card warn">
+    <div class="card-title"><span class="dot dy"></span>Fuel Status</div>
+    <div class="big yellow">$1,020</div>
+    <div class="sub">per 1,000 lbs · improving ↓</div>
+    <div class="fuel-gauge" style="margin-top:10px;">
+      <div class="fuel-track"><div class="fuel-fill-ok" style="width:41%;"></div></div>
+      <div class="fuel-markers"><span>$300 ideal</span><span>$1,000</span><span>$3,000 max</span></div>
+    </div>
+    <div style="font-size:0.72rem;margin-top:6px;" class="yellow">⚠ Buy now — target &lt;$500 to max tank</div>
+    <div class="sub2">Holding: 1,400,858 lbs</div>
+  </div>
+
+  <div class="card good">
+    <div class="card-title"><span class="dot dg"></span>Reputation</div>
+    <div class="big green">82%</div>
+    <div class="sub">Airline · ★★★★½</div>
+    <div class="bar-track"><div class="bar-fill" style="width:82%;background:#2ecc71;"></div></div>
+    <div style="margin-top:8px;" class="sub">Cargo Rep</div>
+    <div class="med yellow" style="margin-top:2px;">76%</div>
+    <div class="bar-track"><div class="bar-fill" style="width:76%;background:#f1c40f;"></div></div>
+  </div>
+
+  <div class="card info">
+    <div class="card-title"><span class="dot db"></span>Cash &amp; Fleet</div>
+    <div class="big blue">$3.2M</div>
+    <div class="sub">available cash</div>
+    <div style="margin-top:10px;display:flex;gap:12px;flex-wrap:wrap;">
+      <div><div class="med white">43</div><div class="sub2">fleet size</div></div>
+      <div><div class="med green">51</div><div class="sub2">hangar cap</div></div>
+      <div><div class="med green">8</div><div class="sub2">open slots</div></div>
+    </div>
+    <div style="margin-top:8px;font-size:0.72rem;" class="yellow">⚠ 1 pending maintenance</div>
+  </div>
+
+  <div class="card good">
+    <div class="card-title"><span class="dot dg"></span>CO₂ Status</div>
+    <div class="big green">$130</div>
+    <div class="sub">per 1,000 quotas · at threshold</div>
+    <div style="margin-top:10px;">
+      <div class="med white">3,428,712</div>
+      <div class="sub2">quotas stockpiled</div>
+    </div>
+    <div style="margin-top:8px;font-size:0.72rem;" class="green">✅ Healthy — no action needed</div>
+    <div class="sub2" style="margin-top:4px;">Share value: <span class="green">↑ $19.99</span></div>
+  </div>
+</div>
+
+<!-- BUILD ORDER PROGRESS -->
+<div class="section-label">🎯 Premium Fleet Build Plan</div>
+<div class="progress-section">
+  <div class="progress-card">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+      <div>
+        <div style="font-size:0.9rem;font-weight:700;color:#f0c040;">Operation: Premium Elevation</div>
+        <div style="font-size:0.75rem;color:#5a8aaa;margin-top:3px;">Target: 3 premium aircraft · Est. ~$170M total · Upgrading from mid-tier to wide-body long-haul</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:0.72rem;color:#5a8aaa;">Estimated weekly savings</div>
+        <div style="font-size:1.1rem;font-weight:700;color:#2ecc71;">~$3M / week</div>
+        <div style="font-size:0.67rem;color:#5a8aaa;">at normalized fuel prices</div>
+      </div>
+    </div>
+
+    <!-- Step indicators -->
+    <div class="build-steps">
+      <div class="step">
+        <div class="step-circle step-active">✓<br><span style="font-size:0.55rem;">NOW</span></div>
+        <div class="step-price green">$3.2M</div>
+        <div class="step-label green">Saving &amp; flying current fleet</div>
+      </div>
+      <div class="step">
+        <div class="step-circle step-next">1</div>
+        <div class="step-price gold">$40.8M</div>
+        <div class="step-label" style="color:#f0c040;">B747SP<br>~Week 12–13</div>
+      </div>
+      <div class="step">
+        <div class="step-circle step-future">2</div>
+        <div class="step-price muted">$56.3M</div>
+        <div class="step-label">MD-11C<br>~Week 18</div>
+      </div>
+      <div class="step">
+        <div class="step-circle step-future">3</div>
+        <div class="step-price muted">$72.8M</div>
+        <div class="step-label">787-10<br>~Week 24</div>
+      </div>
+    </div>
+
+    <!-- Savings progress toward B747SP -->
+    <div class="savings-bar-wrap">
+      <div class="savings-label">
+        <span style="color:#f0c040;font-weight:600;">→ Next target: B747SP @ $40.8M</span>
+        <span style="color:#5a8aaa;">$3.2M saved of $40.8M &nbsp;(<span class="yellow">7.8%</span>)</span>
+      </div>
+      <div class="savings-track">
+        <div class="savings-fill" style="width:7.8%;">
+          <span class="savings-pct">7.8%</span>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:0.67rem;color:#3a6a8a;margin-top:4px;">
+        <span>$0</span><span>~$37.6M still needed</span><span>$40.8M</span>
+      </div>
+    </div>
+
+    <!-- Route guidance -->
+    <div style="margin-top:14px;background:#0a1520;border-radius:8px;padding:12px;border:1px solid #1e3a52;">
+      <div style="font-size:0.7rem;color:#5bc0f5;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Route Planning for New Aircraft</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;font-size:0.75rem;">
+        <div><span class="tag tag-gold" style="margin-bottom:4px;display:inline-block;">B747SP</span><br><span class="white">10,000–15,000km</span><br><span style="color:#5a8aaa;">CLT→DXB, JFK→SIN, LAX→SYD</span></div>
+        <div><span class="tag tag-blue" style="margin-bottom:4px;display:inline-block;">MD-11C</span><br><span class="white">8,000–12,600km</span><br><span style="color:#5a8aaa;">CLT→NRT, LHR→PVG, DFW→DOH</span></div>
+        <div><span class="tag tag-green" style="margin-bottom:4px;display:inline-block;">787-10</span><br><span class="white">8,000–11,910km</span><br><span style="color:#5a8aaa;">CLT→CDG extended, LAX→ICN</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TARGET PLANES -->
+<div class="section-label">✈ Target Aircraft Specs</div>
+<div class="grid3">
+  <div class="plane-card target">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <div>
+        <div class="plane-name">Boeing B747SP</div>
+        <div class="plane-meta">Step 1 · Bridge to premium · ~Week 12</div>
+      </div>
+      <span class="tag tag-gold">NEXT BUY</span>
+    </div>
+    <div class="plane-stats">
+      <div class="plane-stat"><div class="plane-stat-val gold">$40.8M</div><div class="plane-stat-lbl">Purchase price</div></div>
+      <div class="plane-stat"><div class="plane-stat-val white">400</div><div class="plane-stat-lbl">Passengers</div></div>
+      <div class="plane-stat"><div class="plane-stat-val white">15,000km</div><div class="plane-stat-lbl">Range</div></div>
+      <div class="plane-stat"><div class="plane-stat-val white">1,050kph</div><div class="plane-stat-lbl">Speed</div></div>
+      <div class="plane-stat"><div class="plane-stat-val green">18 lbs/km</div><div class="plane-stat-lbl">Fuel efficiency</div></div>
+      <div class="plane-stat"><div class="plane-stat-val green">~$130k</div><div class="plane-stat-lbl">Est. profit/flight</div></div>
+    </div>
+    <div style="margin-top:10px;font-size:0.72rem;color:#5a8aaa;line-height:1.5;">Fast, great range, cheapest entry into premium. Gets you earning big sooner while saving for MD-11 &amp; 787-10.</div>
+  </div>
+
+  <div class="plane-card">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <div>
+        <div class="plane-name">McDonnell Douglas MD-11C</div>
+        <div class="plane-meta">Step 2 · High capacity · ~Week 18</div>
+      </div>
+      <span class="tag tag-blue">STEP 2</span>
+    </div>
+    <div class="plane-stats">
+      <div class="plane-stat"><div class="plane-stat-val gold">$56.3M</div><div class="plane-stat-lbl">Purchase price</div></div>
+      <div class="plane-stat"><div class="plane-stat-val white">410</div><div class="plane-stat-lbl">Passengers</div></div>
+      <div class="plane-stat"><div class="plane-stat-val white">12,600km</div><div class="plane-stat-lbl">Range</div></div>
+      <div class="plane-stat"><div class="plane-stat-val white">940kph</div><div class="plane-stat-lbl">Speed</div></div>
+      <div class="plane-stat"><div class="plane-stat-val yellow">21 lbs/km</div><div class="plane-stat-lbl">Fuel efficiency</div></div>
+      <div class="plane-stat"><div class="plane-stat-val green">~$121k</div><div class="plane-stat-lbl">Est. profit/flight</div></div>
+    </div>
+    <div style="margin-top:10px;font-size:0.72rem;color:#5a8aaa;line-height:1.5;">410 pax at a price you can reach. Higher fuel burn is the tradeoff — buy fuel cheap and it's very profitable.</div>
+  </div>
+
+  <div class="plane-card">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <div>
+        <div class="plane-name">Boeing 787-10</div>
+        <div class="plane-meta">Step 3 · Flagship · ~Week 24</div>
+      </div>
+      <span class="tag tag-green">FLAGSHIP</span>
+    </div>
+    <div class="plane-stats">
+      <div class="plane-stat"><div class="plane-stat-val gold">$72.8M</div><div class="plane-stat-lbl">Purchase price</div></div>
+      <div class="plane-stat"><div class="plane-stat-val white">440</div><div class="plane-stat-lbl">Passengers</div></div>
+      <div class="plane-stat"><div class="plane-stat-val white">11,910km</div><div class="plane-stat-lbl">Range</div></div>
+      <div class="plane-stat"><div class="plane-stat-val white">801kph</div><div class="plane-stat-lbl">Speed</div></div>
+      <div class="plane-stat"><div class="plane-stat-val green">13 lbs/km</div><div class="plane-stat-lbl">Best in class</div></div>
+      <div class="plane-stat"><div class="plane-stat-val green">~$178k</div><div class="plane-stat-lbl">Est. profit/flight</div></div>
+    </div>
+    <div style="margin-top:10px;font-size:0.72rem;color:#5a8aaa;line-height:1.5;">Best PFE (33.85) and lowest fuel burn in range. Your true flagship — every dollar saved on fuel compounds across 440 seats.</div>
+  </div>
+</div>
+
+<!-- FLEET OVERVIEW -->
+<div class="section-label">Fleet Overview</div>
+<div class="grid1">
+  <div class="card">
+    <table>
+      <thead>
+        <tr><th>Aircraft</th><th>Count</th><th>Role</th><th>Schedule Fit</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong class="white">MC-21-400</strong></td><td>5</td><td>Medium-haul PAX</td><td><span class="tag tag-green">✓ 3–5hr — perfect</span></td><td><span class="tag tag-green">Best current earner</span></td></tr>
+        <tr><td><strong class="white">DC-10-10</strong></td><td>3</td><td>Long-haul PAX</td><td><span class="tag tag-green">✓ Good fit</span></td><td><span class="tag tag-green">Good loads</span></td></tr>
+        <tr><td><strong class="white">B787-8</strong></td><td>1</td><td>Long-haul PAX</td><td><span class="tag tag-green">✓ Good fit</span></td><td><span class="tag tag-blue">Monitor demand</span></td></tr>
+        <tr><td><strong class="white">ERJ 190-200</strong></td><td>6</td><td>Short-medium PAX</td><td><span class="tag tag-yellow">⚠ Stretch w/ Cost Index</span></td><td><span class="tag tag-blue">Solid earner</span></td></tr>
+        <tr><td><strong class="white">B757-200</strong></td><td>2</td><td>Long-haul PAX</td><td><span class="tag tag-green">✓ Good fit</span></td><td><span class="tag tag-blue">Reasonable loads</span></td></tr>
+        <tr><td><strong class="white">Il-96-400</strong></td><td>2</td><td>Ultra long-haul PAX</td><td><span class="tag tag-green">✓ Good fit</span></td><td><span class="tag tag-yellow">Check Y-class config</span></td></tr>
+        <tr><td><strong class="white">DC-9-10</strong></td><td>8</td><td>Short-haul PAX</td><td><span class="tag tag-red">✗ Too short — idle between logins</span></td><td><span class="tag tag-yellow">Keep flying, don't expand</span></td></tr>
+        <tr><td><strong class="white">A400M</strong></td><td>2</td><td>Cargo large</td><td><span class="tag tag-green">✓ Long routes</span></td><td><span class="tag tag-blue">~55% fill — acceptable</span></td></tr>
+        <tr><td><strong class="white">B757-200F</strong></td><td>1</td><td>Cargo large</td><td><span class="tag tag-green">✓ Good fit</span></td><td><span class="tag tag-green">68k lbs — strong</span></td></tr>
+        <tr><td><strong style="color:#5a8aaa;">MD-88 / A320 / B737-800</strong></td><td>3</td><td>Medium PAX</td><td><span class="tag tag-yellow">⚠ Varies</span></td><td><span class="tag tag-blue">Keep flying</span></td></tr>
+        <tr><td><strong style="color:#5a8aaa;">CRJ / Fokker / Caravelle / CL-44 / others</strong></td><td>~10</td><td>Mixed</td><td><span class="tag tag-red">✗ Poor schedule fit</span></td><td><span class="tag tag-yellow">Keep flying — every $ counts</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CARGO + FUEL STRATEGY -->
+<div class="grid2">
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div class="section-label" style="padding-bottom:0;">📦 Cargo Operations</div>
+    <div class="card" style="margin:0 22px;">
+      <div class="card-title"><span class="dot db"></span>Current Cargo Fleet</div>
+      <table>
+        <thead><tr><th>Plane</th><th>Route</th><th>Load</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>B757-200F</td><td>CAY→DFW</td><td class="green">68k lbs</td><td><span class="tag tag-green">Strong</span></td></tr>
+          <tr><td>A400M ×2</td><td>SVD→CLT, LHR→ECN</td><td class="yellow">42–43k lbs</td><td><span class="tag tag-yellow">~55% fill</span></td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:10px;background:#0a1520;border-radius:6px;padding:10px;font-size:0.73rem;color:#5a8aaa;line-height:1.6;">
+        <span class="blue">Large load demand</span> = Y-class demand × 500<br>
+        <span class="yellow">Heavy load demand</span> = J-class demand × 1,000<br>
+        <span style="color:#3a6a8a;">Total flown: 1,901,000 lbs large · 95,000 lbs heavy</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div class="section-label" style="padding-bottom:0;">⛽ Fuel Strategy</div>
+    <div class="card" style="margin:0 22px;">
+      <div class="card-title"><span class="dot dy"></span>Buy Targets</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center;">
+        <div style="background:#082a12;border:1px solid #1a5a2a;border-radius:6px;padding:8px;">
+          <div class="green" style="font-weight:700;">≤$500</div>
+          <div style="font-size:0.67rem;color:#2ecc71;">Max out tank</div>
+        </div>
+        <div style="background:#1a1608;border:1px solid #5a4000;border-radius:6px;padding:8px;">
+          <div class="yellow" style="font-weight:700;">≤$1,000</div>
+          <div style="font-size:0.67rem;color:#f1c40f;">Buy aggressively</div>
+        </div>
+        <div style="background:#1a1010;border:1px solid #5a1010;border-radius:6px;padding:8px;">
+          <div class="red" style="font-weight:700;">&gt;$1,000</div>
+          <div style="font-size:0.67rem;color:#e74c3c;">Don't buy</div>
+        </div>
+      </div>
+      <div style="margin-top:10px;font-size:0.73rem;color:#5a8aaa;line-height:1.6;">
+        Prices update every ~15 min. Current: <span class="yellow">$1,020</span> — just above the buy threshold.<br>
+        Watch for <span class="green">bonanza events</span> that push price below $300.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRIORITY LIST -->
+<div class="section-label" style="margin-top:4px;">🎯 Priority Actions</div>
+<div class="grid1" style="padding-bottom:6px;">
+  <div class="card">
+    <ul class="plist">
+      <li>
+        <div class="pnum p1">1</div>
+        <div><strong class="red">Fix pending maintenance NOW</strong> — 1 plane flagged. Do the A-check before it's grounded mid-route or triggers an audit.</div>
+      </li>
+      <li>
+        <div class="pnum p2">2</div>
+        <div><strong class="red">Fuel: watch every 15 minutes</strong> — currently $1,020, just above threshold. The moment it drops below $1,000 buy heavily. Below $500 max out the tank. Every $1,000/1k lbs you save compounds across 43 planes.</div>
+      </li>
+      <li>
+        <div class="pnum p3">3</div>
+        <div><strong class="yellow">Save every dollar toward B747SP ($40.8M)</strong> — you need ~$37.6M more. At ~$3M/week with normalized fuel that's ~12–13 weeks. Don't spend on new short-haul planes or upgrades.</div>
+      </li>
+      <li>
+        <div class="pnum p4">4</div>
+        <div><strong class="yellow">Apply Cost Index to ERJ 190-200 fleet</strong> — stretch flight times from ~1:30 toward 2:55 to sync with 3–4hr login window and save fuel. Stay just under the hour mark to avoid extra A-check hours.</div>
+      </li>
+      <li>
+        <div class="pnum p5">5</div>
+        <div><strong class="green">Plan long-haul routes now</strong> — research and bookmark routes for your B747SP before you buy it. CLT→DXB (~11,300km), LAX→SYD (~12,100km), LHR→NRT (~9,600km) are all in range.</div>
+      </li>
+      <li>
+        <div class="pnum p6">6</div>
+        <div><strong class="green">Check in every few days</strong> — share your Overview screenshot and cash balance. Dashboard updates as you progress toward each build step.</div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- WHAT TO REPORT -->
+<div class="section-label">📋 Next Check-In: What to Share</div>
+<div class="grid1" style="padding-bottom:20px;">
+  <div class="card info" style="font-size:0.78rem;color:#a0b8cc;line-height:1.8;">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+      <div>📸 <span class="white">Overview screenshot</span><br><span style="color:#5a8aaa;">Captures cash, fleet, pax, fuel in one shot</span></div>
+      <div>💰 <span class="white">Current cash balance</span><br><span style="color:#5a8aaa;">Tracks progress toward B747SP</span></div>
+      <div>⛽ <span class="white">Fuel price &amp; tank level</span><br><span style="color:#5a8aaa;">Confirms savings rate accuracy</span></div>
+      <div>✈ <span class="white">Any new planes / routes</span><br><span style="color:#5a8aaa;">So fleet table stays current</span></div>
+    </div>
+  </div>
+</div>
+
+<footer>SKY HUB Command Center · Build Plan: B747SP → MD-11C → 787-10 · Updated June 28, 2026 · Next update in a few days</footer>
+</body>
+</html>
