@@ -15,6 +15,8 @@
   .header-meta { font-size: 0.72rem; color: #5a8aaa; margin-top: 4px; }
   .badge { background: #1e4060; border: 1px solid #2a6090; border-radius: 20px; padding: 2px 9px; font-size: 0.7rem; color: #5bc0f5; margin-left: 6px; }
   .badge-green { background: #0a2a14; border-color: #1a5a2a; color: #2ecc71; }
+  .badge-gold  { background: #2a1e00; border-color: #5a3e00; color: #f0c040; }
+  .badge-purple { background: #1a0a2a; border-color: #3a1a5a; color: #c084fc; }
 
   .section-label { font-size: 0.67rem; text-transform: uppercase; letter-spacing: 2px; color: #3a6a8a; padding: 14px 22px 5px; font-weight: 700; }
   .grid4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; padding: 14px 22px; }
@@ -23,22 +25,23 @@
   .grid1 { padding: 0 22px 14px; }
 
   .card { background: #152030; border: 1px solid #1e3a52; border-radius: 10px; padding: 14px 16px; }
-  .card.alert { border-color: #c0392b; background: #1a1010; }
-  .card.warn  { border-color: #c0850a; background: #1a1608; }
-  .card.good  { border-color: #1a6b3a; background: #0c1a10; }
-  .card.info  { border-color: #1e4a70; }
-  .card.gold  { border-color: #b8860b; background: #1a1608; }
+  .card.alert  { border-color: #c0392b; background: #1a1010; }
+  .card.warn   { border-color: #c0850a; background: #1a1608; }
+  .card.good   { border-color: #1a6b3a; background: #0c1a10; }
+  .card.info   { border-color: #1e4a70; }
+  .card.gold   { border-color: #b8860b; background: #1a1608; }
+  .card.purple { border-color: #7c3aed; background: #130a20; }
 
   .card-title { font-size: 0.67rem; text-transform: uppercase; letter-spacing: 1.5px; color: #5a8aaa; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
   .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-  .dr{background:#e74c3c;} .dy{background:#f1c40f;} .dg{background:#2ecc71;} .db{background:#3498db;}
+  .dr{background:#e74c3c;} .dy{background:#f1c40f;} .dg{background:#2ecc71;} .db{background:#3498db;} .dp{background:#c084fc;}
 
   .big  { font-size: 1.9rem; font-weight: 700; line-height: 1; }
   .med  { font-size: 1.2rem; font-weight: 700; }
   .sub  { font-size: 0.75rem; color: #7a9bb5; margin-top: 5px; }
   .sub2 { font-size: 0.72rem; color: #5a8aaa; margin-top: 3px; }
 
-  .red{color:#e74c3c;} .yellow{color:#f1c40f;} .green{color:#2ecc71;} .blue{color:#5bc0f5;} .gold{color:#f0c040;} .white{color:#fff;} .muted{color:#4a6a7a;}
+  .red{color:#e74c3c;} .yellow{color:#f1c40f;} .green{color:#2ecc71;} .blue{color:#5bc0f5;} .gold{color:#f0c040;} .white{color:#fff;} .muted{color:#4a6a7a;} .purple{color:#c084fc;}
 
   .bar-track { height: 8px; background: #0d1f2d; border-radius: 4px; overflow: hidden; margin: 7px 0 4px; }
   .bar-fill  { height: 100%; border-radius: 4px; }
@@ -78,10 +81,11 @@
   .pnum { width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.68rem; font-weight:700; flex-shrink:0; margin-top:1px; }
   .p1,.p2 { background:#4a0808; color:#e74c3c; }
   .p3,.p4 { background:#3a2e00; color:#f1c40f; }
-  .p5,.p6,.p7 { background:#083a20; color:#2ecc71; }
+  .p5,.p6,.p7,.p8 { background:#083a20; color:#2ecc71; }
 
   .fuel-track { height:12px; background:#0d1f2d; border-radius:6px; overflow:hidden; }
-  .fuel-fill-ok { height:100%; border-radius:6px; background:linear-gradient(90deg,#7a5a00,#f1c40f); }
+  .fuel-fill-ok  { height:100%; border-radius:6px; background:linear-gradient(90deg,#7a5a00,#f1c40f); }
+  .fuel-fill-good{ height:100%; border-radius:6px; background:linear-gradient(90deg,#0a4a20,#2ecc71); }
   .fuel-markers { display:flex; justify-content:space-between; font-size:0.6rem; color:#3a6a8a; margin-top:3px; }
 
   .plane-card { background:#0e1e2e; border:1px solid #1e3a52; border-radius:8px; padding:14px; }
@@ -101,9 +105,12 @@
   .hub-name { font-size:0.65rem; color:#5a8aaa; margin-top:2px; }
   .hub-region { font-size:0.6rem; margin-top:3px; }
 
-  .section-divider { height:1px; background:#1e3a52; margin:4px 22px 0; }
-  .route-group-header { background:#0a1520; }
-  .route-group-header td { color:#5bc0f5; font-weight:700; font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; padding:8px 8px 4px; border-bottom:1px solid #1e3a52; }
+  .route-group-header td { background:#0a1520; color:#5bc0f5; font-weight:700; font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; padding:8px 8px 4px; border-bottom:1px solid #1e3a52; }
+
+  /* Charter highlight */
+  .charter-stat { background:#1a0f2a; border:1px solid #5a3a8a; border-radius:8px; padding:12px; text-align:center; }
+  .charter-big { font-size:1.6rem; font-weight:700; color:#c084fc; line-height:1; }
+  .charter-lbl { font-size:0.67rem; color:#8a6aaa; margin-top:4px; }
 
   footer { text-align:center; padding:14px; font-size:0.65rem; color:#2a4a62; border-top:1px solid #1e3a52; margin-top:8px; }
 </style>
@@ -114,12 +121,14 @@
 <header>
   <div>
     <div class="airline-name">✈ <span>UBIQUITY</span> AIR</div>
-    <div class="alliance-tag">Member of <strong>SKY HUB</strong> Alliance</div>
+    <div class="alliance-tag">Member of <strong>SKY HUB</strong> Alliance &nbsp;·&nbsp; Rank: 20,623 &nbsp;·&nbsp; Level 20 &nbsp;·&nbsp; Realism Mode</div>
     <div class="header-meta">
       Base: CLT &nbsp;·&nbsp; Hubs: DFW · LAX · LHR
       <span class="badge">43 planes</span>
       <span class="badge">43 routes</span>
-      <span class="badge badge-green">8 open hangars</span>
+      <span class="badge badge-green">18 open hangars</span>
+      <span class="badge badge-gold">Ubiquity Freigh (Cargo)</span>
+      <span class="badge badge-purple">Ubi Lux (Charter)</span>
     </div>
   </div>
   <div style="text-align:right;">
@@ -140,38 +149,106 @@
     <div style="font-size:0.72rem;margin-top:7px;" class="yellow">Buy below $1,000 · max out below $500</div>
     <div class="sub2">Holding: 1,400,858 lbs · updates ~15 min</div>
   </div>
-  <div class="card good">
+
+  <div class="card">
     <div class="card-title"><span class="dot dg"></span>Reputation</div>
-    <div class="big green">82%</div>
-    <div class="sub">Airline · ★★★★½</div>
-    <div class="bar-track"><div class="bar-fill" style="width:82%;background:#2ecc71;"></div></div>
-    <div style="margin-top:8px;" class="sub">Cargo Reputation</div>
-    <div class="med yellow" style="margin-top:2px;">76%</div>
-    <div class="bar-track"><div class="bar-fill" style="width:76%;background:#f1c40f;"></div></div>
+    <div style="display:grid;grid-template-columns:auto 1fr;gap:4px 10px;align-items:center;font-size:0.78rem;">
+      <span style="color:#5a8aaa;">Airline</span>
+      <div><div class="bar-track" style="margin:0;"><div class="bar-fill" style="width:82%;background:#2ecc71;"></div></div></div>
+      <span class="green" style="font-size:0.85rem;font-weight:700;">82%</span><span></span>
+
+      <span style="color:#5a8aaa;">Cargo</span>
+      <div><div class="bar-track" style="margin:0;"><div class="bar-fill" style="width:76%;background:#f1c40f;"></div></div></div>
+      <span class="yellow" style="font-size:0.85rem;font-weight:700;">76%</span><span></span>
+
+      <span style="color:#5a8aaa;">Charter</span>
+      <div><div class="bar-track" style="margin:0;"><div class="bar-fill" style="width:70%;background:#c084fc;"></div></div></div>
+      <span class="purple" style="font-size:0.85rem;font-weight:700;">~70%</span><span></span>
+    </div>
+    <div class="sub2" style="margin-top:8px;">Alliance contribution: <span class="white">$16,551</span></div>
   </div>
+
   <div class="card info">
     <div class="card-title"><span class="dot db"></span>Cash &amp; Fleet</div>
     <div class="big blue">$3.2M</div>
     <div class="sub">available cash</div>
-    <div style="margin-top:10px;display:flex;gap:14px;flex-wrap:wrap;">
-      <div><div class="med white">43</div><div class="sub2">fleet size</div></div>
-      <div><div class="med green">51</div><div class="sub2">hangar cap</div></div>
-      <div><div class="med green">8</div><div class="sub2">open slots</div></div>
+    <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;">
+      <div><div class="med white">43</div><div class="sub2">planes</div></div>
+      <div><div class="med green">61</div><div class="sub2">hangars</div></div>
+      <div><div class="med green">18</div><div class="sub2">open</div></div>
     </div>
-    <div style="margin-top:8px;font-size:0.72rem;" class="yellow">⚠ 1 pending maintenance</div>
-    <div class="sub2">Share value: <span class="green">↑ $19.99</span></div>
+    <div class="sub2" style="margin-top:8px;">Daily salary: <span class="yellow">$103,050</span> &nbsp;·&nbsp; Share: <span class="green">↑$19.94</span></div>
   </div>
+
   <div class="card good">
     <div class="card-title"><span class="dot dg"></span>CO₂ Status</div>
     <div class="big green">$130</div>
     <div class="sub">per 1,000 quotas · at threshold</div>
     <div style="margin-top:10px;"><div class="med white">3,428,712</div><div class="sub2">quotas stockpiled</div></div>
     <div style="margin-top:6px;font-size:0.72rem;" class="green">✅ Healthy — no action needed</div>
+    <div class="sub2" style="margin-top:4px;">Buy below <span class="green">$120</span> · avoid going negative</div>
+  </div>
+</div>
+
+<!-- CHARTER HIGHLIGHT -->
+<div class="section-label">✈ Ubi Lux Charter Operations — Your $1M+/Flight Goal: Already Achieved</div>
+<div class="grid1">
+  <div class="card purple">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;">
+      <div>
+        <div style="font-size:0.95rem;font-weight:700;color:#c084fc;">Ubi Lux · A330-900neo · GUM→DFW</div>
+        <div style="font-size:0.75rem;color:#8a6aaa;margin-top:3px;">Charter subsidiary · Expires in 86 days · Guam→Dallas Fort Worth · 11,675km</div>
+      </div>
+      <span class="tag tag-purple" style="font-size:0.75rem;padding:4px 12px;">$1M+/FLIGHT ACHIEVED ✓</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px;">
+      <div class="charter-stat">
+        <div class="charter-big">$8.28M</div>
+        <div class="charter-lbl">Revenue per flight</div>
+      </div>
+      <div class="charter-stat">
+        <div class="charter-big" style="color:#2ecc71;">Y1,665</div>
+        <div class="charter-lbl">Economy pax</div>
+      </div>
+      <div class="charter-stat">
+        <div class="charter-big" style="color:#f0c040;">J293</div>
+        <div class="charter-lbl">Business pax</div>
+      </div>
+      <div class="charter-stat">
+        <div class="charter-big" style="color:#5bc0f5;">6,695</div>
+        <div class="charter-lbl">Demand (fully met)</div>
+      </div>
+      <div class="charter-stat">
+        <div class="charter-big" style="color:#f1c40f;">14h34m</div>
+        <div class="charter-lbl">Flight time</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px;">
+      <div style="background:#0a0818;border:1px solid #3a1a5a;border-radius:7px;padding:10px;">
+        <div style="font-size:0.68rem;color:#8a6aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;">vs Daily Salary</div>
+        <div style="font-size:1rem;font-weight:700;color:#c084fc;">80×</div>
+        <div style="font-size:0.7rem;color:#8a6aaa;margin-top:2px;">One charter flight = 80 days of staff salary</div>
+      </div>
+      <div style="background:#0a0818;border:1px solid #3a1a5a;border-radius:7px;padding:10px;">
+        <div style="font-size:0.68rem;color:#8a6aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;">Aircraft</div>
+        <div style="font-size:1rem;font-weight:700;color:#fff;">A330-900neo</div>
+        <div style="font-size:0.7rem;color:#8a6aaa;margin-top:2px;">205 flight hrs · 11 cycles · 0.68% wear · Maintenance planned on arrival</div>
+      </div>
+      <div style="background:#0a0818;border:1px solid #3a1a5a;border-radius:7px;padding:10px;">
+        <div style="font-size:0.68rem;color:#8a6aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;">Charter Guide</div>
+        <div style="font-size:0.78rem;color:#c084fc;line-height:1.6;">A330-900neo = profit strategy<br>A340-200 = XP farming strategy<br>Never out-fly weekly demand<br>Do A-checks before dispatch</div>
+      </div>
+    </div>
+    <div style="margin-top:10px;font-size:0.72rem;color:#8a6aaa;background:#0a0818;border-radius:6px;padding:8px 10px;">
+      ⚠ <span style="color:#f1c40f;">Ubi Lux expires in 86 days</span> — renew charter license before expiry or aircraft will be grounded until renewed. Cost: 600 BP/month (covered by 24 daily ad points = 720/month).
+    </div>
   </div>
 </div>
 
 <!-- BUILD PLAN -->
-<div class="section-label">🎯 Goal 1 — Premium Fleet Build Plan</div>
+<div class="section-label">🎯 Goal 1 — Mainline Premium Fleet Build Plan</div>
 <div class="grid1">
   <div class="progress-card">
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
@@ -226,7 +303,7 @@
       <div class="plane-stat"><div class="plane-stat-val green">18 lbs/km</div><div class="plane-stat-lbl">Fuel burn</div></div>
       <div class="plane-stat"><div class="plane-stat-val green">~$130k</div><div class="plane-stat-lbl">Est. profit/flight</div></div>
     </div>
-    <div style="margin-top:10px;font-size:0.72rem;color:#5a8aaa;line-height:1.5;">Fastest path into premium. Gets you earning big while saving toward MD-11 &amp; 787-10.</div>
+    <div style="margin-top:10px;font-size:0.72rem;color:#5a8aaa;line-height:1.5;">Fastest path into mainline premium. Earns big while you save toward MD-11 &amp; 787-10.</div>
   </div>
   <div class="plane-card">
     <div style="display:flex;justify-content:space-between;align-items:flex-start;">
@@ -256,244 +333,72 @@
       <div class="plane-stat"><div class="plane-stat-val green">13 lbs/km</div><div class="plane-stat-lbl">Best in class</div></div>
       <div class="plane-stat"><div class="plane-stat-val green">~$178k</div><div class="plane-stat-lbl">Est. profit/flight</div></div>
     </div>
-    <div style="margin-top:10px;font-size:0.72rem;color:#5a8aaa;line-height:1.5;">Best PFE (33.85) and lowest fuel burn in range. Your true flagship earner.</div>
+    <div style="margin-top:10px;font-size:0.72rem;color:#5a8aaa;line-height:1.5;">Best PFE (33.85) and lowest fuel burn in range. Your true mainline flagship.</div>
   </div>
 </div>
 
-<!-- FULL ROUTE & FLEET TABLE -->
+<!-- FULL ROUTE TABLE -->
 <div class="section-label">📊 Full Fleet & Route Assessment (Distance-Based)</div>
 <div class="grid1">
   <div class="card">
-    <div style="font-size:0.7rem;color:#5a8aaa;margin-bottom:10px;">Flight times calculated from route distance ÷ aircraft cruise speed. Schedule fit based on 3–4hr login window.</div>
+    <div style="font-size:0.7rem;color:#5a8aaa;margin-bottom:10px;">Flight times calculated from route distance ÷ aircraft cruise speed. Schedule fit based on 3–4hr login window. Realism mode.</div>
     <table>
-      <thead>
-        <tr>
-          <th>Route</th><th>Aircraft</th><th>Distance</th><th>Flight Time</th><th>Schedule Fit</th><th>Seat Load Y/J/F</th><th>Notes</th>
-        </tr>
-      </thead>
+      <thead><tr><th>Route</th><th>Aircraft</th><th>Distance</th><th>Flight Time</th><th>Schedule Fit</th><th>Seat Load Y/J/F</th><th>Notes</th></tr></thead>
       <tbody>
         <tr class="route-group-header"><td colspan="7">— TOO SHORT (under 2hr) — idles between logins</td></tr>
-        <tr>
-          <td>ORD→DFW</td><td>DC-9-10</td><td>1,290km</td><td>1h20m</td>
-          <td><span class="tag tag-red">✗ Too short</span></td>
-          <td>28 / 9 / 19</td><td class="red">Sits idle ~2hrs per login cycle</td>
-        </tr>
-        <tr>
-          <td>OKC→LAX</td><td>DC-9-10</td><td>1,907km</td><td>1h59m</td>
-          <td><span class="tag tag-red">✗ Too short</span></td>
-          <td>15 / 5 / 16</td><td class="red">Sits idle ~2hrs per login cycle</td>
-        </tr>
-        <tr>
-          <td>STC→CLT</td><td>BAe 146-300</td><td>1,594km</td><td>1h59m</td>
-          <td><span class="tag tag-red">✗ Too short</span></td>
-          <td>10 / 12 / 20</td><td class="red">Sits idle ~2hrs per login cycle</td>
-        </tr>
+        <tr><td>ORD→DFW</td><td>DC-9-10</td><td>1,290km</td><td>1h20m</td><td><span class="tag tag-red">✗ Too short</span></td><td>28 / 9 / 19</td><td class="red">Idles ~2hrs per login cycle</td></tr>
+        <tr><td>OKC→LAX</td><td>DC-9-10</td><td>1,907km</td><td>1h59m</td><td><span class="tag tag-red">✗ Too short</span></td><td>15 / 5 / 16</td><td class="red">Idles ~2hrs per login cycle</td></tr>
+        <tr><td>STC→CLT</td><td>BAe 146-300</td><td>1,594km</td><td>1h59m</td><td><span class="tag tag-red">✗ Too short</span></td><td>10 / 12 / 20</td><td class="red">Idles ~2hrs per login cycle</td></tr>
 
         <tr class="route-group-header"><td colspan="7">— BORDERLINE (2h00m–2h45m) — use Cost Index to stretch toward 3hr</td></tr>
-        <tr>
-          <td>DFW→YYZ</td><td>DC-9-10</td><td>1,929km</td><td>2h00m</td>
-          <td><span class="tag tag-yellow">⚠ Use CI</span></td>
-          <td><span class="red">0</span> / 9 / 20</td><td class="red">⚠ Zero Y-class — reconfigure seats</td>
-        </tr>
-        <tr>
-          <td>KIN→CLT</td><td>DC-9-10</td><td>1,965km</td><td>2h03m</td>
-          <td><span class="tag tag-yellow">⚠ Use CI</span></td>
-          <td>9 / 9 / 14</td><td style="color:#5a8aaa;">Reasonable mix</td>
-        </tr>
-        <tr>
-          <td>CLT→KIN</td><td>DC-9-10</td><td>1,965km</td><td>2h03m</td>
-          <td><span class="tag tag-yellow">⚠ Use CI</span></td>
-          <td>14 / 5 / 16</td><td style="color:#5a8aaa;">Reasonable mix</td>
-        </tr>
-        <tr>
-          <td>RBA→LHR</td><td>DC-9-10</td><td>2,003km</td><td>2h05m</td>
-          <td><span class="tag tag-yellow">⚠ Use CI</span></td>
-          <td><span class="red">0</span> / 18 / 13</td><td class="red">⚠ Zero Y-class — reconfigure seats</td>
-        </tr>
-        <tr>
-          <td>RBA→LHR</td><td>DC-9-10</td><td>2,003km</td><td>2h05m</td>
-          <td><span class="tag tag-yellow">⚠ Use CI</span></td>
-          <td>17 / 7 / 15</td><td style="color:#5a8aaa;">2nd plane same route — OK mix</td>
-        </tr>
-        <tr>
-          <td>LAX→DFW</td><td>DC-9-10</td><td>1,983km</td><td>2h04m</td>
-          <td><span class="tag tag-yellow">⚠ Use CI</span></td>
-          <td>13 / 3 / 19</td><td style="color:#5a8aaa;">Reasonable mix</td>
-        </tr>
-        <tr>
-          <td>ROC→DFW</td><td>DC-9-10</td><td>2,034km</td><td>2h07m</td>
-          <td><span class="tag tag-yellow">⚠ Use CI</span></td>
-          <td>74 / 0 / 0</td><td class="green">All-Y config — intentional or check demand</td>
-        </tr>
-        <tr>
-          <td>SKP→LHR</td><td>Fokker 70A</td><td>1,976km</td><td>2h20m</td>
-          <td><span class="tag tag-yellow">⚠ Use CI</span></td>
-          <td>16 / 0 / 17</td><td style="color:#5a8aaa;">No J seats — check if intentional</td>
-        </tr>
-        <tr>
-          <td>RBL→DFW</td><td>ERJ 190-200</td><td>2,383km</td><td>2h27m</td>
-          <td><span class="tag tag-yellow">⚠ Use CI</span></td>
-          <td>16 / 9 / 22</td><td style="color:#5a8aaa;">Good class mix</td>
-        </tr>
-        <tr>
-          <td>LAX→MLI</td><td>ERJ 190-200</td><td>2,580km</td><td>2h40m</td>
-          <td><span class="tag tag-yellow">⚠ Use CI</span></td>
-          <td>14 / 15 / 18</td><td style="color:#5a8aaa;">Good class mix</td>
-        </tr>
-        <tr>
-          <td>CLT→EIS</td><td>ERJ 190-200</td><td>2,467km</td><td>2h33m</td>
-          <td><span class="tag tag-yellow">⚠ Use CI</span></td>
-          <td>18 / 9 / 22</td><td style="color:#5a8aaa;">Good class mix</td>
-        </tr>
-        <tr>
-          <td>DFW→DLS</td><td>ERJ 190-200</td><td>2,497km</td><td>2h34m</td>
-          <td><span class="tag tag-yellow">⚠ Use CI</span></td>
-          <td>9 / 14 / 22</td><td style="color:#5a8aaa;">Good class mix</td>
-        </tr>
-        <tr>
-          <td>LHR→SVO</td><td>ERJ 190-200</td><td>2,508km</td><td>2h35m</td>
-          <td><span class="tag tag-yellow">⚠ Use CI</span></td>
-          <td>22 / 14 / 17</td><td style="color:#5a8aaa;">Good class mix</td>
-        </tr>
+        <tr><td>DFW→YYZ</td><td>DC-9-10</td><td>1,929km</td><td>2h00m</td><td><span class="tag tag-yellow">⚠ Use CI</span></td><td><span class="red">0</span> / 9 / 20</td><td class="red">⚠ Zero Y seats — reconfigure</td></tr>
+        <tr><td>KIN→CLT</td><td>DC-9-10</td><td>1,965km</td><td>2h03m</td><td><span class="tag tag-yellow">⚠ Use CI</span></td><td>9 / 9 / 14</td><td style="color:#5a8aaa;">Reasonable mix</td></tr>
+        <tr><td>CLT→KIN</td><td>DC-9-10</td><td>1,965km</td><td>2h03m</td><td><span class="tag tag-yellow">⚠ Use CI</span></td><td>14 / 5 / 16</td><td style="color:#5a8aaa;">Reasonable mix</td></tr>
+        <tr><td>RBA→LHR</td><td>DC-9-10</td><td>2,003km</td><td>2h05m</td><td><span class="tag tag-yellow">⚠ Use CI</span></td><td><span class="red">0</span> / 18 / 13</td><td class="red">⚠ Zero Y seats — reconfigure</td></tr>
+        <tr><td>RBA→LHR</td><td>DC-9-10</td><td>2,003km</td><td>2h05m</td><td><span class="tag tag-yellow">⚠ Use CI</span></td><td>17 / 7 / 15</td><td style="color:#5a8aaa;">2nd plane same route — OK</td></tr>
+        <tr><td>LAX→DFW</td><td>DC-9-10</td><td>1,983km</td><td>2h04m</td><td><span class="tag tag-yellow">⚠ Use CI</span></td><td>13 / 3 / 19</td><td style="color:#5a8aaa;">Reasonable mix</td></tr>
+        <tr><td>ROC→DFW</td><td>DC-9-10</td><td>2,034km</td><td>2h07m</td><td><span class="tag tag-yellow">⚠ Use CI</span></td><td>74 / 0 / 0</td><td class="green">All-Y config — verify vs demand</td></tr>
+        <tr><td>SKP→LHR</td><td>Fokker 70A</td><td>1,976km</td><td>2h20m</td><td><span class="tag tag-yellow">⚠ Use CI</span></td><td>16 / 0 / 17</td><td class="yellow">No J seats — intentional?</td></tr>
+        <tr><td>RBL→DFW</td><td>ERJ 190-200</td><td>2,383km</td><td>2h27m</td><td><span class="tag tag-yellow">⚠ Use CI</span></td><td>16 / 9 / 22</td><td style="color:#5a8aaa;">Good class mix</td></tr>
+        <tr><td>LAX→MLI</td><td>ERJ 190-200</td><td>2,580km</td><td>2h40m</td><td><span class="tag tag-yellow">⚠ Use CI</span></td><td>14 / 15 / 18</td><td style="color:#5a8aaa;">Good class mix</td></tr>
+        <tr><td>CLT→EIS</td><td>ERJ 190-200</td><td>2,467km</td><td>2h33m</td><td><span class="tag tag-yellow">⚠ Use CI</span></td><td>18 / 9 / 22</td><td style="color:#5a8aaa;">Good class mix</td></tr>
+        <tr><td>DFW→DLS</td><td>ERJ 190-200</td><td>2,497km</td><td>2h34m</td><td><span class="tag tag-yellow">⚠ Use CI</span></td><td>9 / 14 / 22</td><td style="color:#5a8aaa;">Good class mix</td></tr>
+        <tr><td>LHR→SVO</td><td>ERJ 190-200</td><td>2,508km</td><td>2h35m</td><td><span class="tag tag-yellow">⚠ Use CI</span></td><td>22 / 14 / 17</td><td style="color:#5a8aaa;">Good class mix</td></tr>
 
         <tr class="route-group-header"><td colspan="7">— GOOD FIT (2h45m–4h30m) — lands within your login window</td></tr>
-        <tr>
-          <td>CLT→LAX</td><td>MD-88</td><td>3,413km</td><td>4h12m</td>
-          <td><span class="tag tag-green">✓ Good</span></td>
-          <td>40 / 14 / 26</td><td class="green">Solid load across all classes</td>
-        </tr>
-        <tr>
-          <td>YSU→LAX</td><td>MC-21-400</td><td>4,116km</td><td>3h24m</td>
-          <td><span class="tag tag-green">✓ Good</span></td>
-          <td>44 / 12 / 40</td><td class="green">Strong load</td>
-        </tr>
-        <tr>
-          <td>YSU→LAX</td><td>MC-21-400</td><td>4,116km</td><td>3h24m</td>
-          <td><span class="tag tag-green">✓ Good</span></td>
-          <td>26 / 32 / 34</td><td class="green">Strong load, J-heavy mix</td>
-        </tr>
-        <tr>
-          <td>CLT→KEF</td><td>MC-21-400</td><td>5,011km</td><td>4h09m</td>
-          <td><span class="tag tag-green">✓ Good</span></td>
-          <td>42 / 17 / 38</td><td class="green">Strong load</td>
-        </tr>
-        <tr>
-          <td>NSI→LHR</td><td>MC-21-400</td><td>5,427km</td><td>4h29m</td>
-          <td><span class="tag tag-green">✓ Good</span></td>
-          <td>25 / 15 / 43</td><td class="green">Good load, F-heavy</td>
-        </tr>
-        <tr>
-          <td>LAX→AXM</td><td>MC-21-400</td><td>5,485km</td><td>4h32m</td>
-          <td><span class="tag tag-green">✓ Good</span></td>
-          <td>33 / 16 / 41</td><td class="green">Strong load</td>
-        </tr>
-        <tr>
-          <td>SVD→CLT</td><td>A400M</td><td>3,153km</td><td>4h02m</td>
-          <td><span class="tag tag-green">✓ Good</span></td>
-          <td>42,000 lbs</td><td style="color:#5a8aaa;">~55% fill — acceptable</td>
-        </tr>
-        <tr>
-          <td>LHR→ECN</td><td>A400M</td><td>3,248km</td><td>4h09m</td>
-          <td><span class="tag tag-green">✓ Good</span></td>
-          <td>43,000 lbs</td><td style="color:#5a8aaa;">~56% fill — acceptable</td>
-        </tr>
-        <tr>
-          <td>LHR→VOG</td><td>Caravelle 12</td><td>3,158km</td><td>3h57m</td>
-          <td><span class="tag tag-green">✓ Good</span></td>
-          <td>21 / 13 / 22</td><td style="color:#5a8aaa;">Reasonable mix</td>
-        </tr>
-        <tr>
-          <td>LAX→CLT</td><td>Caravelle 12</td><td>3,413km</td><td>4h16m</td>
-          <td><span class="tag tag-green">✓ Good</span></td>
-          <td>16 / 16 / 21</td><td style="color:#5a8aaa;">Reasonable mix</td>
-        </tr>
-        <tr>
-          <td>CLT→GEO</td><td>CRJ 900LR</td><td>3,946km</td><td>4h32m</td>
-          <td><span class="tag tag-green">✓ Good</span></td>
-          <td>15 / 5 / 17</td><td style="color:#5a8aaa;">Reasonable mix</td>
-        </tr>
+        <tr><td>CLT→LAX</td><td>MD-88</td><td>3,413km</td><td>4h12m</td><td><span class="tag tag-green">✓ Good</span></td><td>40 / 14 / 26</td><td class="green">Solid load</td></tr>
+        <tr><td>YSU→LAX</td><td>MC-21-400</td><td>4,116km</td><td>3h24m</td><td><span class="tag tag-green">✓ Good</span></td><td>44 / 12 / 40</td><td class="green">Strong load</td></tr>
+        <tr><td>YSU→LAX</td><td>MC-21-400</td><td>4,116km</td><td>3h24m</td><td><span class="tag tag-green">✓ Good</span></td><td>26 / 32 / 34</td><td class="green">Strong, J-heavy mix</td></tr>
+        <tr><td>CLT→KEF</td><td>MC-21-400</td><td>5,011km</td><td>4h09m</td><td><span class="tag tag-green">✓ Good</span></td><td>42 / 17 / 38</td><td class="green">Strong load</td></tr>
+        <tr><td>NSI→LHR</td><td>MC-21-400</td><td>5,427km</td><td>4h29m</td><td><span class="tag tag-green">✓ Good</span></td><td>25 / 15 / 43</td><td class="green">Good, F-heavy</td></tr>
+        <tr><td>LAX→AXM</td><td>MC-21-400</td><td>5,485km</td><td>4h32m</td><td><span class="tag tag-green">✓ Good</span></td><td>33 / 16 / 41</td><td class="green">Strong load</td></tr>
+        <tr><td>SVD→CLT</td><td>A400M</td><td>3,153km</td><td>4h02m</td><td><span class="tag tag-green">✓ Good</span></td><td>42,000 lbs</td><td style="color:#5a8aaa;">~55% fill — acceptable</td></tr>
+        <tr><td>LHR→ECN</td><td>A400M</td><td>3,248km</td><td>4h09m</td><td><span class="tag tag-green">✓ Good</span></td><td>43,000 lbs</td><td style="color:#5a8aaa;">~56% fill — acceptable</td></tr>
+        <tr><td>LHR→VOG</td><td>Caravelle 12</td><td>3,158km</td><td>3h57m</td><td><span class="tag tag-green">✓ Good</span></td><td>21 / 13 / 22</td><td style="color:#5a8aaa;">Reasonable mix</td></tr>
+        <tr><td>LAX→CLT</td><td>Caravelle 12</td><td>3,413km</td><td>4h16m</td><td><span class="tag tag-green">✓ Good</span></td><td>16 / 16 / 21</td><td style="color:#5a8aaa;">Reasonable mix</td></tr>
+        <tr><td>CLT→GEO</td><td>CRJ 900LR</td><td>3,946km</td><td>4h32m</td><td><span class="tag tag-green">✓ Good</span></td><td>15 / 5 / 17</td><td style="color:#5a8aaa;">Reasonable mix</td></tr>
 
         <tr class="route-group-header"><td colspan="7">— LONG HAUL (4h30m–9hr) — depart every other login</td></tr>
-        <tr>
-          <td>LHR→ADD</td><td>DC-10-10</td><td>5,920km</td><td>6h31m</td>
-          <td><span class="tag tag-blue">~ 2-login</span></td>
-          <td>26 / 28 / 42</td><td class="green">Good load across classes</td>
-        </tr>
-        <tr>
-          <td>SFG→LAX</td><td>DC-10-10</td><td>5,731km</td><td>6h18m</td>
-          <td><span class="tag tag-blue">~ 2-login</span></td>
-          <td>26 / 28 / 42</td><td class="green">Good load across classes</td>
-        </tr>
-        <tr>
-          <td>CLT→LHR</td><td>DC-10-10</td><td>6,409km</td><td>7h03m</td>
-          <td><span class="tag tag-blue">~ 2-login</span></td>
-          <td>25 / 31 / 43</td><td class="green">Strong load, J-heavy</td>
-        </tr>
-        <tr>
-          <td>CLT→SCC</td><td>A320-200</td><td>6,092km</td><td>6h54m</td>
-          <td><span class="tag tag-blue">~ 2-login</span></td>
-          <td><span class="red">0</span> / 32 / 25</td><td class="red">⚠ Zero Y-class — reconfigure seats</td>
-        </tr>
-        <tr>
-          <td>CLT→KEF</td><td>A300B2-200</td><td>5,011km</td><td>5h47m</td>
-          <td><span class="tag tag-blue">~ 2-login</span></td>
-          <td>26 / 27 / 43</td><td class="green">Good load</td>
-        </tr>
-        <tr>
-          <td>MAD→IKA</td><td>CL-44D</td><td>4,754km</td><td>6h47m</td>
-          <td><span class="tag tag-blue">~ 2-login</span></td>
-          <td>17 / 9 / 32</td><td style="color:#5a8aaa;">Low Y — check demand</td>
-        </tr>
-        <tr>
-          <td>CLT→CDG</td><td>B757-200</td><td>6,701km</td><td>7h57m</td>
-          <td><span class="tag tag-blue">~ 2-login</span></td>
-          <td>24 / 16 / 39</td><td class="green">Good load</td>
-        </tr>
-        <tr>
-          <td>CAY→DFW</td><td>B757-200F</td><td>5,578km</td><td>6h37m</td>
-          <td><span class="tag tag-blue">~ 2-login</span></td>
-          <td>68,000 lbs</td><td class="green">Strong cargo load</td>
-        </tr>
-        <tr>
-          <td>MAD→CLT</td><td>B737-800</td><td>6,598km</td><td>9h06m</td>
-          <td><span class="tag tag-blue">~ 2-login</span></td>
-          <td>19 / 25 / 30</td><td class="yellow">J-heavy — check Y demand</td>
-        </tr>
+        <tr><td>LHR→ADD</td><td>DC-10-10</td><td>5,920km</td><td>6h31m</td><td><span class="tag tag-blue">~ 2-login</span></td><td>26 / 28 / 42</td><td class="green">Good load</td></tr>
+        <tr><td>SFG→LAX</td><td>DC-10-10</td><td>5,731km</td><td>6h18m</td><td><span class="tag tag-blue">~ 2-login</span></td><td>26 / 28 / 42</td><td class="green">Good load</td></tr>
+        <tr><td>CLT→LHR</td><td>DC-10-10</td><td>6,409km</td><td>7h03m</td><td><span class="tag tag-blue">~ 2-login</span></td><td>25 / 31 / 43</td><td class="green">Strong, J-heavy</td></tr>
+        <tr><td>CLT→SCC</td><td>A320-200</td><td>6,092km</td><td>6h54m</td><td><span class="tag tag-blue">~ 2-login</span></td><td><span class="red">0</span> / 32 / 25</td><td class="red">⚠ Zero Y seats — reconfigure</td></tr>
+        <tr><td>CLT→KEF</td><td>A300B2-200</td><td>5,011km</td><td>5h47m</td><td><span class="tag tag-blue">~ 2-login</span></td><td>26 / 27 / 43</td><td class="green">Good load</td></tr>
+        <tr><td>MAD→IKA</td><td>CL-44D</td><td>4,754km</td><td>6h47m</td><td><span class="tag tag-blue">~ 2-login</span></td><td>17 / 9 / 32</td><td class="yellow">Low Y — check demand</td></tr>
+        <tr><td>CLT→CDG</td><td>B757-200</td><td>6,701km</td><td>7h57m</td><td><span class="tag tag-blue">~ 2-login</span></td><td>24 / 16 / 39</td><td class="green">Good load</td></tr>
+        <tr><td>CAY→DFW</td><td>B757-200F</td><td>5,578km</td><td>6h37m</td><td><span class="tag tag-blue">~ 2-login</span></td><td>68,000 lbs</td><td class="green">Strong cargo</td></tr>
+        <tr><td>MAD→CLT</td><td>B737-800</td><td>6,598km</td><td>9h06m</td><td><span class="tag tag-blue">~ 2-login</span></td><td>19 / 25 / 30</td><td class="yellow">J-heavy — check Y demand</td></tr>
 
         <tr class="route-group-header"><td colspan="7">— ULTRA LONG HAUL (9hr+) — depart once or twice per day</td></tr>
-        <tr>
-          <td>PWE→CLT</td><td>B757-200</td><td>7,022km</td><td>8h20m</td>
-          <td><span class="tag tag-purple">Ultra long</span></td>
-          <td>44 / 14 / 29</td><td class="green">Strong Y load</td>
-        </tr>
-        <tr>
-          <td>CLT→PWE</td><td>B757-200</td><td>7,022km</td><td>8h20m</td>
-          <td><span class="tag tag-purple">Ultra long</span></td>
-          <td>16 / 21 / 37</td><td style="color:#5a8aaa;">Low Y on return leg — check demand</td>
-        </tr>
-        <tr>
-          <td>CAI→CLT</td><td>Il-96-400</td><td>9,876km</td><td>11h21m</td>
-          <td><span class="tag tag-purple">Ultra long</span></td>
-          <td><span class="yellow">16</span> / 42 / 84</td><td class="yellow">Very low Y — check seat config vs demand</td>
-        </tr>
-        <tr>
-          <td>LAX→BZK</td><td>Il-96-400</td><td>9,937km</td><td>11h25m</td>
-          <td><span class="tag tag-purple">Ultra long</span></td>
-          <td>65 / 36 / 77</td><td class="green">Better Y load — good</td>
-        </tr>
-        <tr>
-          <td>NAN→CLT</td><td>B767-200ER</td><td>12,166km</td><td>12h13m</td>
-          <td><span class="tag tag-purple">Ultra long</span></td>
-          <td>29 / 17 / 36</td><td style="color:#5a8aaa;">Reasonable mix for route length</td>
-        </tr>
-        <tr>
-          <td>CGK→LAX</td><td>B787-8</td><td>14,450km</td><td>17h46m</td>
-          <td><span class="tag tag-purple">Ultra long</span></td>
-          <td>25 / 29 / 40</td><td class="yellow">Low Y for 250-seat plane — review config</td>
-        </tr>
+        <tr><td>PWE→CLT</td><td>B757-200</td><td>7,022km</td><td>8h20m</td><td><span class="tag tag-purple">Ultra long</span></td><td>44 / 14 / 29</td><td class="green">Strong Y load</td></tr>
+        <tr><td>CLT→PWE</td><td>B757-200</td><td>7,022km</td><td>8h20m</td><td><span class="tag tag-purple">Ultra long</span></td><td>16 / 21 / 37</td><td class="yellow">Low Y return leg</td></tr>
+        <tr><td>CAI→CLT</td><td>Il-96-400</td><td>9,876km</td><td>11h21m</td><td><span class="tag tag-purple">Ultra long</span></td><td><span class="yellow">16</span> / 42 / 84</td><td class="yellow">Very low Y — review config</td></tr>
+        <tr><td>LAX→BZK</td><td>Il-96-400</td><td>9,937km</td><td>11h25m</td><td><span class="tag tag-purple">Ultra long</span></td><td>65 / 36 / 77</td><td class="green">Good Y load</td></tr>
+        <tr><td>NAN→CLT</td><td>B767-200ER</td><td>12,166km</td><td>12h13m</td><td><span class="tag tag-purple">Ultra long</span></td><td>29 / 17 / 36</td><td style="color:#5a8aaa;">Reasonable for route length</td></tr>
+        <tr><td>CGK→LAX</td><td>B787-8</td><td>14,450km</td><td>17h46m</td><td><span class="tag tag-purple">Ultra long</span></td><td>25 / 29 / 40</td><td class="yellow">Low Y for 250-seat plane</td></tr>
       </tbody>
     </table>
-    <div style="font-size:0.67rem;color:#3a6a8a;margin-top:8px;">* 6th ERJ route not identified from fleet data. Route distances calculated from great-circle coordinates.</div>
+    <div style="font-size:0.67rem;color:#3a6a8a;margin-top:8px;">* 6th ERJ route not yet identified. Distances calculated from great-circle coordinates.</div>
   </div>
 </div>
 
@@ -516,34 +421,21 @@
       <div class="hub-item recommended"><div class="hub-code gold">SIN</div><div class="hub-name">Singapore</div><div class="hub-region gold">→ ADD THIS</div></div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px;">
-      <div style="background:#0a1520;border-radius:7px;padding:10px;">
-        <div style="font-size:0.68rem;color:#5a8aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Coverage Gap Filled</div>
-        <div style="font-size:0.85rem;font-weight:700;color:#f0c040;">10,874km</div>
-        <div style="font-size:0.7rem;color:#5a8aaa;margin-top:3px;">from nearest hub (LHR) — largest uncovered zone in your network</div>
-      </div>
-      <div style="background:#0a1520;border-radius:7px;padding:10px;">
-        <div style="font-size:0.68rem;color:#5a8aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Why SIN over SYD</div>
-        <div style="font-size:0.85rem;font-weight:700;color:#2ecc71;">Central Asia hub</div>
-        <div style="font-size:0.7rem;color:#5a8aaa;margin-top:3px;">SIN unlocks SEA, India, Middle East &amp; NE Asia all at once. SYD is a geographic dead end.</div>
-      </div>
-      <div style="background:#0a1520;border-radius:7px;padding:10px;">
-        <div style="font-size:0.68rem;color:#5a8aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">AM4 Hub Quality</div>
-        <div style="font-size:0.85rem;font-weight:700;color:#2ecc71;">Top Tier</div>
-        <div style="font-size:0.7rem;color:#5a8aaa;margin-top:3px;">Listed in AM4 guide's recommended hubs. Massive demand pool across all classes.</div>
-      </div>
+      <div style="background:#0a1520;border-radius:7px;padding:10px;"><div style="font-size:0.68rem;color:#5a8aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Coverage Gap</div><div style="font-size:0.85rem;font-weight:700;color:#f0c040;">10,874km</div><div style="font-size:0.7rem;color:#5a8aaa;margin-top:3px;">from nearest hub (LHR) — largest uncovered zone</div></div>
+      <div style="background:#0a1520;border-radius:7px;padding:10px;"><div style="font-size:0.68rem;color:#5a8aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Why SIN over SYD</div><div style="font-size:0.85rem;font-weight:700;color:#2ecc71;">Central Asia hub</div><div style="font-size:0.7rem;color:#5a8aaa;margin-top:3px;">Unlocks SEA, India, Middle East &amp; NE Asia. SYD is a dead end.</div></div>
+      <div style="background:#0a1520;border-radius:7px;padding:10px;"><div style="font-size:0.68rem;color:#5a8aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">AM4 Quality</div><div style="font-size:0.85rem;font-weight:700;color:#2ecc71;">Top Tier</div><div style="font-size:0.7rem;color:#5a8aaa;margin-top:3px;">AM4 recommended hub. Massive demand pool across all classes.</div></div>
     </div>
-    <div style="margin-top:12px;background:#0a1520;border-radius:7px;padding:10px;font-size:0.75rem;color:#a0b8cc;line-height:1.7;">
-      <strong class="gold">Routes SIN unlocks for premium planes:</strong>
-      SIN→CLT (~16,300km), SIN→LAX (~14,100km), SIN→LHR (~10,840km), SIN→DFW (~15,600km) — all ultra-long-haul, perfect for B747SP and MD-11C.
+    <div style="margin-top:10px;background:#0a1520;border-radius:7px;padding:10px;font-size:0.75rem;color:#a0b8cc;">
+      <strong class="gold">Routes SIN unlocks:</strong> SIN→CLT (~16,300km), SIN→LAX (~14,100km), SIN→LHR (~10,840km), SIN→DFW (~15,600km) — perfect for B747SP and MD-11C.
     </div>
-    <div style="margin-top:8px;font-size:0.72rem;" class="yellow">⚠ Cost: 20 Bonus Points — save BP for this before spending on anything else.</div>
+    <div style="margin-top:8px;font-size:0.72rem;" class="yellow">⚠ Cost: 20 Bonus Points — save BP for this before spending elsewhere.</div>
   </div>
 </div>
 
-<!-- CARGO + FUEL -->
+<!-- CARGO + FUEL/CO2 -->
 <div class="grid2">
   <div style="display:flex;flex-direction:column;gap:12px;">
-    <div class="section-label" style="padding-bottom:0;">📦 Cargo</div>
+    <div class="section-label" style="padding-bottom:0;">📦 Cargo — Ubiquity Freigh</div>
     <div class="card" style="margin:0 22px;">
       <div class="card-title"><span class="dot db"></span>Cargo Fleet</div>
       <table>
@@ -555,20 +447,36 @@
       </table>
       <div style="margin-top:10px;background:#0a1520;border-radius:6px;padding:10px;font-size:0.72rem;color:#5a8aaa;line-height:1.7;">
         <span class="blue">Large demand</span> = Y-class demand × 500 &nbsp;·&nbsp; <span class="yellow">Heavy demand</span> = J-class demand × 1,000<br>
-        Total flown: <span class="white">1,901,000 lbs</span> large · <span class="white">95,000 lbs</span> heavy
+        Total: <span class="white">1,901,000 lbs</span> large · <span class="white">95,000 lbs</span> heavy
       </div>
     </div>
   </div>
+
   <div style="display:flex;flex-direction:column;gap:12px;">
-    <div class="section-label" style="padding-bottom:0;">⛽ Fuel Strategy</div>
+    <div class="section-label" style="padding-bottom:0;">⛽ Fuel &amp; CO₂ Strategy</div>
     <div class="card" style="margin:0 22px;">
-      <div class="card-title"><span class="dot dy"></span>Buy Zones · updates every ~15 min</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center;">
-        <div style="background:#082a12;border:1px solid #1a5a2a;border-radius:6px;padding:10px;"><div class="green" style="font-weight:700;font-size:1rem;">≤$500</div><div style="font-size:0.67rem;color:#2ecc71;">Max out tank</div></div>
-        <div style="background:#1a1608;border:1px solid #5a4000;border-radius:6px;padding:10px;"><div class="yellow" style="font-weight:700;font-size:1rem;">≤$1,000</div><div style="font-size:0.67rem;color:#f1c40f;">Buy aggressively</div></div>
-        <div style="background:#1a1010;border:1px solid #5a1010;border-radius:6px;padding:10px;"><div class="red" style="font-weight:700;font-size:1rem;">&gt;$1,000</div><div style="font-size:0.67rem;color:#e74c3c;">Don't buy</div></div>
+      <div class="card-title"><span class="dot dy"></span>Buy Zones · both update ~every 15–30 min</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div>
+          <div style="font-size:0.67rem;color:#5a8aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;">⛽ Fuel (per 1,000 lbs)</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;text-align:center;">
+            <div style="background:#082a12;border:1px solid #1a5a2a;border-radius:5px;padding:7px;"><div class="green" style="font-weight:700;">≤$500</div><div style="font-size:0.6rem;color:#2ecc71;">Max out</div></div>
+            <div style="background:#1a1608;border:1px solid #5a4000;border-radius:5px;padding:7px;"><div class="yellow" style="font-weight:700;">≤$1k</div><div style="font-size:0.6rem;color:#f1c40f;">Buy now</div></div>
+            <div style="background:#1a1010;border:1px solid #5a1010;border-radius:5px;padding:7px;"><div class="red" style="font-weight:700;">&gt;$1k</div><div style="font-size:0.6rem;color:#e74c3c;">Hold off</div></div>
+          </div>
+          <div style="font-size:0.7rem;color:#5a8aaa;margin-top:5px;">Current: <span class="yellow">$1,020</span> — just over threshold</div>
+        </div>
+        <div>
+          <div style="font-size:0.67rem;color:#5a8aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;">🌿 CO₂ (per 1,000 quotas)</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;text-align:center;">
+            <div style="background:#082a12;border:1px solid #1a5a2a;border-radius:5px;padding:7px;"><div class="green" style="font-weight:700;">≤$120</div><div style="font-size:0.6rem;color:#2ecc71;">Buy now</div></div>
+            <div style="background:#1a1608;border:1px solid #5a4000;border-radius:5px;padding:7px;"><div class="yellow" style="font-weight:700;">≤$150</div><div style="font-size:0.6rem;color:#f1c40f;">Acceptable</div></div>
+            <div style="background:#1a1010;border:1px solid #5a1010;border-radius:5px;padding:7px;"><div class="red" style="font-weight:700;">Negative</div><div style="font-size:0.6rem;color:#e74c3c;">Rep -10%</div></div>
+          </div>
+          <div style="font-size:0.7rem;color:#5a8aaa;margin-top:5px;">Current: <span class="green">$130</span> · Stockpile: <span class="white">3.4M quotas</span></div>
+        </div>
       </div>
-      <div style="margin-top:10px;font-size:0.72rem;color:#5a8aaa;">Current: <span class="yellow">$1,020</span> — just over threshold. Watch for bonanza events below $300.</div>
+      <div style="margin-top:8px;font-size:0.7rem;color:#5a8aaa;">Watch for <span class="green">bonanza events</span> — fuel below $300, CO₂ below $100.</div>
     </div>
   </div>
 </div>
@@ -578,13 +486,14 @@
 <div class="grid1">
   <div class="card">
     <ul class="plist">
-      <li><div class="pnum p1">1</div><div><strong class="red">Fix pending maintenance NOW</strong> — 1 plane flagged. Do the A-check before it's grounded mid-route or triggers an audit.</div></li>
-      <li><div class="pnum p2">2</div><div><strong class="red">Reconfigure 0Y-class planes</strong> — DFW→YYZ (DC-9), RBA→LHR (DC-9), CLT→SCC (A320) are all flying with zero economy seats. These are leaving revenue on the table every single flight.</div></li>
-      <li><div class="pnum p3">3</div><div><strong class="yellow">Fuel: watch every 15 minutes</strong> — currently $1,020. Drop below $1,000 → buy heavily. Drop below $500 → max out the tank. Compounds across 43 planes per flight.</div></li>
-      <li><div class="pnum p4">4</div><div><strong class="yellow">Apply Cost Index to all borderline routes</strong> — 15 routes sit between 1h20m–2h40m. Reduce CI until each hits 2:55–2:59 to sync landings with your 3–4hr login window and save fuel simultaneously. Keep under the full-hour mark to avoid extra A-check hours.</div></li>
-      <li><div class="pnum p5">5</div><div><strong class="green">Save every dollar toward B747SP ($40.8M)</strong> — need ~$37.6M more. At ~$3M/week with normalized fuel that's ~12–13 weeks. No new planes until then.</div></li>
-      <li><div class="pnum p6">6</div><div><strong class="green">Research ultra-long-haul routes now</strong> — CLT→DXB (~11,300km), LAX→SYD (~12,100km), LHR→SIN (~10,840km). Have these ready the day your B747SP arrives.</div></li>
-      <li><div class="pnum p7">7</div><div><strong class="green">Save Bonus Points for SIN hub (20 BP)</strong> — don't spend BP on anything else. SIN unlocks the entire Asia-Pacific demand pool perfectly timed for your new premium planes.</div></li>
+      <li><div class="pnum p1">1</div><div><strong class="red">Fix pending maintenance</strong> — 1 plane flagged. Do the A-check now. Also note: Ubi Lux A330-900neo has planned maintenance upon arrival — make sure it's done before next charter dispatch.</div></li>
+      <li><div class="pnum p2">2</div><div><strong class="red">Reconfigure 0Y-class planes</strong> — DFW→YYZ (DC-9), RBA→LHR (DC-9), CLT→SCC (A320) all flying with zero economy seats, leaving revenue behind every flight.</div></li>
+      <li><div class="pnum p3">3</div><div><strong class="yellow">Watch Engineers (79%) and Technicians (78%) morale</strong> — both below 80%. If either drops further it will affect operations. Consider a salary raise if morale continues falling. Pilots (87%) and Crew (85%) are fine.</div></li>
+      <li><div class="pnum p4">4</div><div><strong class="yellow">Fuel: watch every 15 minutes</strong> — currently $1,020. Drop below $1,000 → buy heavily. Drop below $500 → max out the tank. CO₂ at $130 — buy if it dips below $120.</div></li>
+      <li><div class="pnum p5">5</div><div><strong class="green">Apply Cost Index to all borderline routes</strong> — 15 routes sit between 1h20m–2h40m. Reduce CI on each until flight time hits 2:55–2:59. Stay under the full-hour mark to avoid extra A-check hours.</div></li>
+      <li><div class="pnum p6">6</div><div><strong class="green">Save toward B747SP ($40.8M)</strong> — need ~$37.6M more. At ~$3M/week with good fuel prices that's ~12–13 weeks. No new mainline planes until then.</div></li>
+      <li><div class="pnum p7">7</div><div><strong class="green">Monitor Ubi Lux charter expiry (86 days)</strong> — renew before expiry. At 24 ad points/day you generate 720 BP/month which covers the 600 BP license cost. Keep running ads daily.</div></li>
+      <li><div class="pnum p8">8</div><div><strong class="green">Save Bonus Points for SIN hub (20 BP)</strong> — after keeping enough for charter renewal, stack BP toward the SIN hub purchase. Unlocks entire Asia-Pacific demand pool for your premium planes.</div></li>
     </ul>
   </div>
 </div>
@@ -594,14 +503,14 @@
 <div class="grid1" style="padding-bottom:20px;">
   <div class="card info">
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;font-size:0.78rem;color:#a0b8cc;line-height:1.8;">
-      <div>📸 <span class="white">Overview screenshot</span><br><span style="color:#5a8aaa;">Captures cash, fleet, pax, fuel in one shot</span></div>
-      <div>💰 <span class="white">Current cash balance</span><br><span style="color:#5a8aaa;">Tracks progress toward B747SP</span></div>
-      <div>⛽ <span class="white">Fuel price &amp; tank level</span><br><span style="color:#5a8aaa;">Confirms savings rate accuracy</span></div>
+      <div>📸 <span class="white">Overview screenshot</span><br><span style="color:#5a8aaa;">Cash, fleet, pax, fuel in one shot</span></div>
+      <div>💰 <span class="white">Current cash balance</span><br><span style="color:#5a8aaa;">Tracks B747SP progress</span></div>
+      <div>⛽ <span class="white">Fuel price &amp; tank level</span><br><span style="color:#5a8aaa;">Confirms savings rate</span></div>
       <div>✈ <span class="white">Any new planes / routes</span><br><span style="color:#5a8aaa;">Keeps fleet table current</span></div>
     </div>
   </div>
 </div>
 
-<footer>Ubiquity Air Command Center · SKY HUB Alliance · Build Plan: B747SP → MD-11C → 787-10 · 5th Hub Target: SIN · Updated June 28, 2026 · jdobbsclt.github.io/ubiquity-air</footer>
+<footer>Ubiquity Air Command Center · SKY HUB Alliance · Subsidiaries: Ubiquity Freigh (Cargo) · Ubi Lux (Charter) · Build Plan: B747SP → MD-11C → 787-10 · 5th Hub: SIN · Updated June 28, 2026 · jdobbsclt.github.io/ubiquity-air</footer>
 </body>
 </html>
